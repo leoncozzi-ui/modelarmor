@@ -1,4 +1,6 @@
 #terminal 1
+uv sync
+source .venv/bin/activate
 litellm --config config.yaml --detailed_debug
 
 #terminal 2
