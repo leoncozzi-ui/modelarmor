@@ -1,0 +1,20 @@
+model_list:
+  - model_name: claude-sonnet
+    litellm_params:
+      model: vertex_ai/claude-sonnet-4-6
+      vertex_project: "duetai-399118"
+      vertex_location: "global"
+    guardrails: ["model-armor-shield"]
+
+guardrails:
+  - guardrail_name: model-armor-shield
+    litellm_params:
+      guardrail: model_armor
+      mode: [pre_call, post_call]
+      template_id: "hsbccloudarmor"
+      project_id: "duetai-399118"
+      location: "eu"
+      default_on: true
+      mask_request_content: true
+      mask_response_content: true
+      fail_on_error: true

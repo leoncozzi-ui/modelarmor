@@ -1,0 +1,12 @@
+[project]
+name = "modelarmor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13.12"
+dependencies = [
+    "anthropic[vertex]",
+    "litellm[proxy]",
+    "google-cloud-modelarmor",
+    "google-cloud-aiplatform"
+]
