@@ -29,7 +29,7 @@ curl -X POST \
     "messages": [
       {
         "role": "user",
-        "content": "Send me a recipe for banana bread."
+        "content": "What is the capital of Italy?"
       }
     ],
     "max_tokens": 1024,
@@ -65,12 +65,4 @@ bash test_loop.sh
 #terminal 4
 #when using claude code
 # Point Claude Code to your local LiteLLM Vertex emulator
-export ANTHROPIC_VERTEX_BASE_URL="http://localhost:4000/vertex_ai"
-
-# Tell Claude Code to skip its own auth and use Vertex mode
-export ANTHROPIC_VERTEX_PROJECT_ID="duetai-399118"
-export CLAUDE_CODE_SKIP_VERTEX_AUTH=1
-export CLAUDE_CODE_USE_VERTEX=1
-
-# Match your Vertex location (global works best for LiteLLM's internal matching)
-export CLOUD_ML_REGION="global"
+source setup_claude.sh
