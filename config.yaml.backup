@@ -1,0 +1,66 @@
+litellm_settings:
+  disable_token_count: true
+
+model_list:
+  - model_name: claude-sonnet
+    litellm_params:
+      model: vertex_ai/claude-sonnet-4-6
+      vertex_project: "duetai-399118"
+      vertex_location: "global"
+    model_info:
+      base_model: vertex_ai/claude-3-5-sonnet-v2@20241022
+
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: vertex_ai/claude-sonnet-4-6
+      vertex_project: "duetai-399118"
+      vertex_location: "global"
+    model_info:
+      base_model: vertex_ai/claude-3-5-sonnet-v2@20241022
+
+  - model_name: claude-3-5-sonnet@20241022
+    litellm_params:
+      model: vertex_ai/claude-sonnet-4-6
+      vertex_project: "duetai-399118"
+      vertex_location: "global"
+      use_in_pass_through: true
+    guardrails: ["model-armor-shield"]
+
+  - model_name: claude-sonnet-4-5@20250929
+    litellm_params:
+      model: vertex_ai/claude-3-5-sonnet-v2@20241022
+      vertex_project: "duetai-399118"
+      vertex_location: "global"
+      use_in_pass_through: true
+    guardrails: ["model-armor-shield"]
+
+
+  - model_name: claude-3-opus@20240229
+    litellm_params:
+      model: vertex_ai/claude-opus-4-6
+      vertex_project: "duetai-399118"
+      vertex_location: "europe-west1"
+      use_in_pass_through: true
+    guardrails: ["model-armor-shield"]
+
+  - model_name: claude-3-5-sonnet-v2@20241022
+    litellm_params:
+      model: vertex_ai/claude-sonnet-4-6
+      vertex_project: "duetai-399118"
+      vertex_location: "global"
+      use_in_pass_through: true
+    guardrails: ["model-armor-shield"]
+
+
+guardrails:
+  - guardrail_name: model-armor-shield
+    litellm_params:
+      guardrail: model_armor
+      mode: [pre_call, post_call]
+      template_id: "hsbccloudarmor"
+      project_id: "duetai-399118"
+      location: "eu"
+      default_on: true
+      mask_request_content: true
+      mask_response_content: true
+      fail_on_error: true

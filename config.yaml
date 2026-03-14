@@ -1,10 +1,26 @@
+litellm_settings:
+  disable_token_count: true
+  success_callback: []
+  failure_callback: []
+  service_callback: []
+  disable_usage_tracking: true
+  stream_response_passthrough: true
+
 model_list:
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: vertex_ai/claude-sonnet-4-6
+      vertex_project: "duetai-399118"
+      vertex_location: "global"
+      use_in_pass_through: true
+
   - model_name: claude-sonnet
     litellm_params:
       model: vertex_ai/claude-sonnet-4-6
       vertex_project: "duetai-399118"
       vertex_location: "global"
-    guardrails: ["model-armor-shield"]
+      use_in_pass_through: true
+
 
 guardrails:
   - guardrail_name: model-armor-shield
