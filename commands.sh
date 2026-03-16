@@ -66,3 +66,43 @@ bash test_loop.sh
 #when using claude code
 # Point Claude Code to your local LiteLLM Vertex emulator
 source setup_claude.sh
+claude
+
+#terminal 5
+#test model armor 
+
+# --- Configuration ---
+PROJECT_ID="duetai-399118"
+LOCATION="europe-west2"  # Your desired REP region
+TEMPLATE_ID="hsbcmodeltemplateregional" # Your template ID in europe-west2
+
+# --- The prompt to test ---
+TEST_PROMPT="What is the capital of France?"
+
+# --- The curl command with CORRECTED JSON Payload and REP Endpoint ---
+curl -X POST \
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{
+      \"userPromptData\": {
+        \"text\": \"${TEST_PROMPT}\"
+      }
+    }" \
+  "https://modelarmor.${LOCATION}.rep.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION}/templates/${TEMPLATE_ID}:sanitizeUserPrompt"
+
+echo
+
+LOCATION="eu"  # Your desired REP region
+TEMPLATE_ID="hsbccloudarmor" # Y
+
+curl -X POST \
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{
+      \"userPromptData\": {
+        \"text\": \"${TEST_PROMPT}\"
+      }
+    }" \
+  "https://modelarmor.${LOCATION}.rep.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION}/templates/${TEMPLATE_ID}:sanitizeUserPrompt"
+
+echo
