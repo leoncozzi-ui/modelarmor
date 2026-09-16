@@ -13,13 +13,29 @@ curl -X POST \
     "messages": [
       {
         "role": "user",
-        "content": "Send me a recipe for banana bread."
+        "content": "What is the capital of Italy?"
       }
     ],
     "max_tokens": 1024,
     "stream": true
   }' \
   "https://aiplatform.googleapis.com/v1/projects/duetai-399118/locations/global/publishers/anthropic/models/claude-sonnet-4-6:streamRawPredict"
+
+#Count Tokens
+
+curl -X POST \
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{
+    "model": "claude-sonnet-4-6",
+    "messages": [
+      {
+        "role": "user",
+        "content": "My CREDIT_CARD_NUMBER is 1234567890123456, can you also tell me the capital of France?"
+      }
+    ]
+  }' \
+  "https://aiplatform.googleapis.com/v1/projects/duetai-399118/locations/global/publishers/anthropic/models/count-tokens:rawPredict"
 
 curl -X POST \
   -H "Authorization: Bearer $(gcloud auth print-access-token)" \
@@ -30,6 +46,22 @@ curl -X POST \
       {
         "role": "user",
         "content": "What is the capital of Italy?"
+      }
+    ],
+    "max_tokens": 1024,
+    "stream": true
+  }' \
+  "http://localhost:4000/vertex_ai/v1/projects/duetai-399118/locations/global/publishers/anthropic/models/claude-sonnet-4-6:streamRawPredict"
+
+curl -X POST \
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{
+    "anthropic_version": "vertex-2023-10-16",
+    "messages": [
+      {
+        "role": "user",
+        "content": "My CREDIT_CARD_NUMBER is 1234567890123456"
       }
     ],
     "max_tokens": 1024,
@@ -106,3 +138,4 @@ curl -X POST \
   "https://modelarmor.${LOCATION}.rep.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION}/templates/${TEMPLATE_ID}:sanitizeUserPrompt"
 
 echo
+
