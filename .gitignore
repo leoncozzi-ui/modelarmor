@@ -8,3 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Customer data / benchmark outputs (do not publish)
+modellatency/test_prompt.json
+modellatency/ask.txt
+modellatency/results/
